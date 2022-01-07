@@ -12,6 +12,10 @@
 /build
 *.env
 
+# Images
+src/assets/product-images
+
+
 # misc
 .DS_Store
 .env.local
