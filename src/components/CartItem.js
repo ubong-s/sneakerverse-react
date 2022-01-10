@@ -34,7 +34,7 @@ export default function CartItem({ id, title, size, amount, image, price }) {
                   increase={increase}
                   decrease={decrease}
                />
-               <p className='mobile'>
+               <p className='subtotal'>
                   <span>Subtotal:</span> {formatPrice(price * amount)}
                </p>
             </div>
@@ -90,6 +90,16 @@ const CartItemWrap = styled.div`
       align-items: center;
       justify-content: space-between;
       margin: 0.5rem 0;
+
+      .subtotal {
+         display: flex;
+         align-items: center;
+         justify-content: flex-end;
+
+         span {
+            font-size: 0.8rem;
+         }
+      }
    }
 
    .remove-btn {

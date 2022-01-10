@@ -104,7 +104,7 @@ export const GlobalStyle = createGlobalStyle`
       font-weight: 600;
       font-size: 1rem;
       color: ${(props) => props.theme.themeDark};
-      /* background: ${(props) => props.theme.neutralLight}; */
+      background: ${(props) => props.theme.neutralLight};
       border: none;
       border-radius: 5px;
       padding: 0.65rem 1.5rem;
