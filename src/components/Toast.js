@@ -15,16 +15,24 @@ const Toast = ({ productDetails }) => {
                <div className='modal-content'>
                   <BsFillCheckCircleFill className='icon' />
                   <h4>
-                     {amount} {product.title} (size {size}){' '}
+                     {amount} {product.title}
+                     <span>(size {size})</span>
                      <span>added to cart</span>
                   </h4>
-                  <Link to='/' onClick={hideToast}>
-                     <button className='btn-alt'>Continue Shopping</button>
-                  </Link>
+                  <div className='btn-container'>
+                     <Link to='/' onClick={hideToast}>
+                        <button className='btn-alt btn-small'>
+                           Continue Shopping
+                        </button>
+                     </Link>
+                     <Link to='/cart' onClick={hideToast}>
+                        <button className='btn-alt btn-small'>
+                           Go to cart
+                        </button>
+                     </Link>
+                  </div>
                   <div className='close-btn'>
-                     <AiFillCloseCircle
-                     // style={{ color: '#fff' }}
-                     />
+                     <AiFillCloseCircle />
                   </div>
                </div>
             </Modal>
@@ -92,10 +100,16 @@ const Modal = styled.div`
          font-size: 2rem;
          cursor: pointer;
          transition: ${(props) => props.theme.transitionEase};
+         line-height: 0;
 
          &:hover {
             opacity: 0.6;
          }
+      }
+
+      .btn-container {
+         display: grid;
+         gap: 0.5rem;
       }
 
       h4 {
@@ -110,8 +124,28 @@ const Modal = styled.div`
 
    @media screen and (min-width: 1024px) {
       .modal-content {
-         width: 40%;
+         width: 50%;
          height: 50%;
+         max-width: 500px;
+
+         .btn-container {
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+
+            button {
+               width: 100%;
+            }
+
+            a {
+               &:first-of-type {
+                  text-align: right;
+               }
+
+               &:last-of-type {
+                  text-align: left;
+               }
+            }
+         }
       }
    }
 `;
