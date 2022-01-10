@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Amount } from '.';
+import { Amount, Toast } from '.';
 import { useCartContext } from '../context/cartContext';
 import { formatPrice } from '../utils/helpers';
 
@@ -111,11 +111,13 @@ export default function SingleProductDetails({ product }) {
                {/* </Link> */}
             </AmountCart>
          </Content>
+         <Toast productDetails={{ amount, size, product }} />
       </SingleProduct>
    );
 }
 
 const SingleProduct = styled.section`
+   position: relative;
    display: grid;
    gap: 2rem;
 

@@ -17,12 +17,12 @@ const Product = ({ product }) => {
                />
                <div className='white'></div>
             </ProductImage>
-            <ProductInfo>
-               <div className='title'>
-                  <h4>{title}</h4>
+            <ProductInfo className='info'>
+               <h4>{title}</h4>
+               <div className='product-footer'>
                   <h6>{category.name}</h6>
+                  <p>{formatPrice(price)}</p>
                </div>
-               <p>{formatPrice(price)}</p>
             </ProductInfo>
          </Link>
       </ProductContainer>
@@ -31,12 +31,41 @@ const Product = ({ product }) => {
 
 export default Product;
 
-const ProductContainer = styled.article``;
+const ProductContainer = styled.article`
+   border-radius: 5px;
+   overflow: hidden;
+   transition: ${(props) => props.theme.transitionEase};
+
+   .info,
+   .white {
+      transition: ${(props) => props.theme.transitionEase};
+   }
+
+   &:hover {
+      background: ${(props) => props.theme.themeDark};
+
+      .info {
+         padding: 0 1rem 1rem 1rem;
+         background: ${(props) => props.theme.themeDark};
+         color: ${(props) => props.theme.themeWhite};
+
+         h4 {
+            color: ${(props) => props.theme.themeWhite};
+         }
+      }
+
+      .white {
+         background: ${(props) => props.theme.themeDark};
+         /* opacity: 0; */
+      }
+   }
+`;
 
 const ProductImage = styled.div`
    position: relative;
    border-radius: 5px;
    overflow: hidden;
+   line-height: 0;
 
    .cover-image {
       height: 450px;
@@ -55,22 +84,26 @@ const ProductImage = styled.div`
       position: absolute;
       left: 0;
       bottom: 0;
-      width: 70%;
-      height: 15%;
+      width: 75%;
+      height: 12%;
       background: ${(props) => props.theme.themeWhite};
    }
 `;
 
 const ProductInfo = styled.div`
    position: relative;
-   display: flex;
-   align-items: flex-end;
-   justify-content: space-between;
    z-index: 2;
+   padding-bottom: 1rem;
+
+   .product-footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+   }
 
    h4 {
       font-size: 1.25rem;
-      margin-top: -1rem;
+      /* margin-top: -1rem; */
    }
 
    h6 {
@@ -90,5 +123,6 @@ const ProductInfo = styled.div`
       font-size: 1.75rem;
       font-weight: 600;
       margin-bottom: 0;
+      line-height: 1;
    }
 `;

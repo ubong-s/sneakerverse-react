@@ -11,6 +11,7 @@ import {
 import { useGlobalContext } from '../context/globalContext';
 import { useCartContext } from '../context/cartContext';
 import { useUserContext } from '../context/userContext';
+// import { Toast } from '../components';
 
 const Navbar = () => {
    const { isMenuOpen, openMenu, closeMenu } = useGlobalContext();
@@ -32,18 +33,7 @@ const Navbar = () => {
                   ))}
                </ul>
             </Nav>
-            <CartIcon onClick={closeMenu}>
-               <Link to='/cart'>
-                  <AiOutlineShoppingCart
-                     style={{ color: isMenuOpen ? '#fff' : '#222' }}
-                  />
-                  {totalItems > 0 && (
-                     <div className={isMenuOpen ? 'total active' : 'total'}>
-                        {totalItems}
-                     </div>
-                  )}
-               </Link>
-            </CartIcon>
+
             <LoginLogout>
                {myUser ? (
                   <button
@@ -64,6 +54,18 @@ const Navbar = () => {
                   </button>
                )}
             </LoginLogout>
+            <CartIcon onClick={closeMenu}>
+               <Link to='/cart'>
+                  <AiOutlineShoppingCart
+                     style={{ color: isMenuOpen ? '#fff' : '#222' }}
+                  />
+                  {totalItems > 0 && (
+                     <div className={isMenuOpen ? 'total active' : 'total'}>
+                        {totalItems}
+                     </div>
+                  )}
+               </Link>
+            </CartIcon>
             <Hamburger onClick={openMenu}>
                {isMenuOpen ? (
                   <AiOutlineClose style={{ color: '#fff' }} />
@@ -71,6 +73,7 @@ const Navbar = () => {
                   <AiOutlineMenu style={{ color: '#222' }} />
                )}
             </Hamburger>
+            {/* <Toast /> */}
          </HeaderInner>
       </Header>
    );
@@ -83,6 +86,7 @@ const Header = styled.header`
 `;
 
 const HeaderInner = styled.div`
+   position: relative;
    display: grid;
    grid-template-columns: auto 1fr auto auto;
    gap: 3rem;
@@ -210,6 +214,7 @@ const Hamburger = styled.div`
 const LoginLogout = styled.div`
    position: relative;
    z-index: 100;
+   justify-self: flex-end;
 
    .auth-btn {
       background: none;

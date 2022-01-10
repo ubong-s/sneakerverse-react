@@ -19,5 +19,6 @@ export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const CLEAR_CART = 'CLEAR_CART';
 export const TOGGLE_CART_ITEM_AMOUNT = 'TOGGLE_CART_ITEM_AMOUNT';
 export const COUNT_CART_TOTALS = 'COUNT_CART_TOTALS';
+export const HIDE_TOAST = 'HIDE_TOAST';
 
 // Checkout Context & Reducer Actions

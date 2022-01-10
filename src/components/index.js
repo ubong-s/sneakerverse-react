@@ -13,3 +13,4 @@ export { default as CartItem } from './CartItem';
 export { default as CartTotals } from './CartTotals';
 export { default as Amount } from './Amount';
 export { default as StripeCheckout } from './StripeCheckout';
+export { default as Toast } from './Toast';

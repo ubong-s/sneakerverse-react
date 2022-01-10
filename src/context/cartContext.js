@@ -5,6 +5,7 @@ import {
    CLEAR_CART,
    TOGGLE_CART_ITEM_AMOUNT,
    COUNT_CART_TOTALS,
+   HIDE_TOAST,
 } from '../actions';
 import reducer from '../reducers/cartReducer';
 
@@ -18,6 +19,7 @@ const getLocalStorage = () => {
 };
 
 const initialState = {
+   showToast: false,
    cart: getLocalStorage(),
    totalItems: 0,
    totalAmount: 0,
@@ -49,14 +51,30 @@ export const CartProvider = ({ children }) => {
       dispatch({ type: CLEAR_CART });
    };
 
+   const hideToast = () => {
+      dispatch({ type: HIDE_TOAST });
+   };
+
    useEffect(() => {
       dispatch({ type: COUNT_CART_TOTALS });
       localStorage.setItem('cart', JSON.stringify(state.cart));
+      // setTimeout(() => {
+      //    if (state.showToast) {
+      //       dispatch({ type: HIDE_TOAST });
+      //    }
+      // }, 5000);
    }, [state.cart]);
 
    return (
       <CartContext.Provider
-         value={{ ...state, addToCart, removeItem, toggleAmount, clearCart }}
+         value={{
+            ...state,
+            addToCart,
+            removeItem,
+            toggleAmount,
+            clearCart,
+            hideToast,
+         }}
       >
          {children}
       </CartContext.Provider>

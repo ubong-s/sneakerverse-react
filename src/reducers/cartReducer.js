@@ -4,6 +4,7 @@ import {
    CLEAR_CART,
    TOGGLE_CART_ITEM_AMOUNT,
    COUNT_CART_TOTALS,
+   HIDE_TOAST,
 } from '../actions';
 
 const cartReducer = (state, action) => {
@@ -27,7 +28,7 @@ const cartReducer = (state, action) => {
             }
          });
 
-         return { ...state, cart: tempCart };
+         return { ...state, cart: tempCart, showToast: true };
       } else {
          const newItem = {
             id: id + size,
@@ -42,6 +43,7 @@ const cartReducer = (state, action) => {
 
          return {
             ...state,
+            showToast: true,
             cart: [...state.cart, newItem],
          };
       }
@@ -99,6 +101,13 @@ const cartReducer = (state, action) => {
          ...state,
          totalItems,
          totalAmount,
+      };
+   }
+
+   if (action.type === HIDE_TOAST) {
+      return {
+         ...state,
+         showToast: false,
       };
    }
 
