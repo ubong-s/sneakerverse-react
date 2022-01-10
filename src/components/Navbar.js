@@ -8,16 +8,19 @@ import {
    AiOutlineMenu,
    AiOutlineClose,
 } from 'react-icons/ai';
-import { GrClose } from 'react-icons/gr';
 import { useGlobalContext } from '../context/globalContext';
+import { useCartContext } from '../context/cartContext';
+import { useUserContext } from '../context/userContext';
 
 const Navbar = () => {
    const { isMenuOpen, openMenu, closeMenu } = useGlobalContext();
+   const { totalItems, clearCart } = useCartContext();
+   const { loginWithRedirect, myUser, logout } = useUserContext();
 
    return (
       <Header>
          <HeaderInner>
-            <Logo>
+            <Logo to='/'>
                <img src={logo} alt='sneakerverse' />
             </Logo>
             <Nav className={isMenuOpen && 'active'}>
@@ -34,8 +37,33 @@ const Navbar = () => {
                   <AiOutlineShoppingCart
                      style={{ color: isMenuOpen ? '#fff' : '#222' }}
                   />
+                  {totalItems > 0 && (
+                     <div className={isMenuOpen ? 'total active' : 'total'}>
+                        {totalItems}
+                     </div>
+                  )}
                </Link>
             </CartIcon>
+            <LoginLogout>
+               {myUser ? (
+                  <button
+                     className={isMenuOpen ? 'auth-btn active' : 'auth-btn'}
+                     onClick={() => {
+                        clearCart();
+                        logout({ returnTo: window.location.origin });
+                     }}
+                  >
+                     Logout
+                  </button>
+               ) : (
+                  <button
+                     className={isMenuOpen ? 'auth-btn active' : 'auth-btn'}
+                     onClick={loginWithRedirect}
+                  >
+                     Login
+                  </button>
+               )}
+            </LoginLogout>
             <Hamburger onClick={openMenu}>
                {isMenuOpen ? (
                   <AiOutlineClose style={{ color: '#fff' }} />
@@ -56,7 +84,7 @@ const Header = styled.header`
 
 const HeaderInner = styled.div`
    display: grid;
-   grid-template-columns: auto 1fr auto;
+   grid-template-columns: auto 1fr auto auto;
    gap: 3rem;
    align-items: center;
    width: 100%;
@@ -68,7 +96,7 @@ const HeaderInner = styled.div`
    }
 `;
 
-const Logo = styled.div`
+const Logo = styled(Link)`
    position: relative;
    background: ${(props) => props.theme.themeDark};
    padding: 0.75rem;
@@ -143,8 +171,28 @@ const Nav = styled.nav`
 const CartIcon = styled.div`
    position: relative;
    justify-self: flex-end;
-   font-size: 2rem;
+   font-size: 2.5rem;
    z-index: 100;
+
+   .total {
+      position: absolute;
+      top: 50%;
+      right: 40%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      width: 30px;
+      font-size: 1.25rem;
+      background: ${(props) => props.theme.themeDark};
+      color: ${(props) => props.theme.themeWhite};
+      border-radius: 50%;
+
+      &.active {
+         color: ${(props) => props.theme.themeDark};
+         background: ${(props) => props.theme.themeWhite};
+      }
+   }
 `;
 
 const Hamburger = styled.div`
@@ -156,5 +204,26 @@ const Hamburger = styled.div`
 
    @media screen and (min-width: 768px) {
       display: none;
+   }
+`;
+
+const LoginLogout = styled.div`
+   position: relative;
+   z-index: 100;
+
+   .auth-btn {
+      background: none;
+      border: none;
+      outline: none;
+      color: ${(props) => props.theme.themeDark};
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 1rem;
+      cursor: pointer;
+
+      &.active {
+         color: ${(props) => props.theme.themeWhite};
+      }
    }
 `;

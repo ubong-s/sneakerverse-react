@@ -2,25 +2,45 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FiChevronDown } from 'react-icons/fi';
 import { useFilterContext } from '../context/filterContext';
+import { formatPrice } from '../utils/helpers';
 
 const FilterForm = () => {
    const {
       allProducts,
-      filters: { minPrice, maxPrice, price },
+      filters: { minPrice, maxPrice, price, size, brand, category },
       updateFilters,
       clearFilters,
    } = useFilterContext();
    const [filterOpen, setFilterOpen] = useState(false);
 
-   const brands = [...new Set(allProducts.map((item) => item.brand.name))];
+   const brands = [
+      'All',
+      ...new Set(allProducts.map((item) => item.brand.name)),
+   ];
 
    const categories = [
+      'All',
       ...new Set(allProducts.map((item) => item.category.name)),
    ];
 
-   const sizes = [
-      ...new Set(...allProducts.map((item) => item.variations)),
-   ].map((item) => item.shoeSize);
+   // const sizes = [
+   //    'All',
+   //    ...[...new Set(...allProducts.map((item) => item.variations))].map(
+   //       (item) => item.shoeSize
+   //    ),
+   // ];
+
+   const sortItems = (a, b) => {
+      return a - b;
+   };
+
+   const getSizes = allProducts
+      .map((item) => item.variations.map((item) => item.shoeSize))
+      .join()
+      .split(',')
+      .sort(sortItems);
+
+   const sizes = ['All', ...[...new Set(getSizes)]];
 
    return (
       <FilterWrap>
@@ -36,44 +56,63 @@ const FilterForm = () => {
          >
             <h3>Filter by</h3>
             <div className='form-group'>
-               <select name='brand' onChange={updateFilters}>
-                  {/* eslint-disable-next-line */}
-                  <option value='' disabled selected hidden>
+               <select name='brand' onChange={updateFilters} value={brand}>
+                  {/* <option value='' disabled selected hidden>
                      Brand
-                  </option>
-                  {brands.map((brand, index) => (
-                     <option key={index} value={brand}>
-                        {brand}
-                     </option>
-                  ))}
+                  </option> */}
+                  {brands.map((brand, index) =>
+                     brand === 'All' ? (
+                        <option key={index} value={brand}>
+                           {brand} Brands
+                        </option>
+                     ) : (
+                        <option key={index} value={brand}>
+                           {brand}
+                        </option>
+                     )
+                  )}
                </select>
-               <select name='category' onChange={updateFilters}>
-                  {/* eslint-disable */}
-                  <option value='' disabled selected hidden>
+               <select
+                  name='category'
+                  onChange={updateFilters}
+                  value={category}
+               >
+                  {/* <option value='' disabled selected hidden>
                      Category
-                  </option>
-                  {categories.map((category, index) => (
-                     <option key={index} value={category}>
-                        {category}
-                     </option>
-                  ))}
+                  </option> */}
+                  {categories.map((c, index) =>
+                     c === 'All' ? (
+                        <option key={index} value={c}>
+                           {c} Categories
+                        </option>
+                     ) : (
+                        <option key={index} value={c}>
+                           {c}
+                        </option>
+                     )
+                  )}
                </select>
-               <select name='size' onChange={updateFilters}>
-                  {/* eslint-disable */}
-                  <option value='' disabled selected hidden>
+               <select name='size' onChange={updateFilters} value={size}>
+                  {/* <option value='' disabled selected hidden>
                      Size
-                  </option>
-                  {sizes.map((size, index) => (
-                     <option key={index} value={size}>
-                        {size}
-                     </option>
-                  ))}
+                  </option> */}
+                  {sizes.map((s, index) =>
+                     s === 'All' ? (
+                        <option key={index} value={s}>
+                           {s} Sizes
+                        </option>
+                     ) : (
+                        <option key={index} value={s}>
+                           {s}
+                        </option>
+                     )
+                  )}
                </select>
             </div>
             <div className='form-group'>
                <div className='price-container'>
                   <label>Price</label>
-                  <p>${price}</p>
+                  <p>{formatPrice(price)}</p>
                </div>
                <Input
                   name='price'
@@ -84,8 +123,8 @@ const FilterForm = () => {
                   value={price}
                />
                <div className='price'>
-                  <span>${minPrice}</span>
-                  <span>${maxPrice}</span>
+                  <span>{formatPrice(minPrice)}</span>
+                  <span>{formatPrice(maxPrice)}</span>
                </div>
             </div>
             <button type='button' className='btn' onClick={clearFilters}>

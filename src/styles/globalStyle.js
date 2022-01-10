@@ -12,7 +12,7 @@ const theme = {
    accentColor: '#F6ECE5',
    transitionEase: 'all 0.2s linear',
    transitionEase1: 'all 0.5s ease-in-out',
-   shadow: '5px 5px 20px 0 rgb(0 0 0 / 6%)',
+   shadow: '5px 5px 20px 0 rgb(0 0 0 / 3%)',
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -49,12 +49,16 @@ export const GlobalStyle = createGlobalStyle`
       font-weight: 600;
       letter-spacing: 0.5px;
       line-height: 1.5;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
    }
 
    p {
       font-family: ${(props) => props.theme.secondaryFont};
-      margin-bottom: 0.75rem;
+      margin-bottom:1rem;
+   }
+   
+   button {
+      font-family: ${(props) => props.theme.secondaryFont};
    }
 
    img {
@@ -95,7 +99,7 @@ export const GlobalStyle = createGlobalStyle`
       }
    }
 
-   .btn {
+   .btn, .btn-alt {
       font-family: ${(props) => props.theme.primaryFont};
       font-weight: 600;
       font-size: 1rem;
@@ -107,6 +111,27 @@ export const GlobalStyle = createGlobalStyle`
       letter-spacing: 1px;
       text-transform: uppercase;
       cursor: pointer;
+      transition:${(props) => props.theme.transitionEase} ;
+      
+      &:hover {
+         background: ${(props) => props.theme.themeDark};
+         color: ${(props) => props.theme.neutralLight};
+      }
+   }
+
+   .btn-alt {
+         background: ${(props) => props.theme.themeDark};
+         color: ${(props) => props.theme.neutralLight};
+      
+      &:hover {
+         background: ${(props) => props.theme.neutralLight};
+         color: ${(props) => props.theme.themeDark};
+      }
+   }
+
+   .btn-small {
+      font-size: 0.75rem;
+      padding: 0.65rem 1rem;
    }
 `;
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
 import styled from 'styled-components';
+import { formatPrice } from '../utils/helpers';
 
 const Product = ({ product }) => {
    const { title, productImages, price, category, slug } = product;
 
    return (
       <ProductContainer>
-         <Link to={`${slug}`}>
+         <Link to={`/products/${slug}`}>
             <ProductImage>
                <img
                   src={productImages[0].responsiveImage.src}
@@ -22,7 +22,7 @@ const Product = ({ product }) => {
                   <h4>{title}</h4>
                   <h6>{category.name}</h6>
                </div>
-               <p>${price}</p>
+               <p>{formatPrice(price)}</p>
             </ProductInfo>
          </Link>
       </ProductContainer>

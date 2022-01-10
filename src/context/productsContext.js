@@ -41,7 +41,7 @@ const initialState = {
 
 export const ProductsProvider = ({ children }) => {
    const [state, dispatch] = useReducer(reducer, initialState);
-   const { data, loading, error } = useQuery(PRODUCTS_QUERY);
+   const { data, loading } = useQuery(PRODUCTS_QUERY);
 
    const fetchProducts = () => {
       dispatch({
@@ -59,6 +59,7 @@ export const ProductsProvider = ({ children }) => {
 
    useEffect(() => {
       fetchProducts();
+      // eslint-disable-next-line
    }, [loading]);
 
    return (

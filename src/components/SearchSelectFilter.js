@@ -4,7 +4,10 @@ import { BsSearch } from 'react-icons/bs';
 import { useFilterContext } from '../context/filterContext';
 
 const SearchSelectFilter = () => {
-   const { updateFilters } = useFilterContext();
+   const {
+      updateFilters,
+      filters: { search },
+   } = useFilterContext();
    const handleSubmit = (e) => {
       e.preventDefault();
    };
@@ -20,6 +23,7 @@ const SearchSelectFilter = () => {
                name='search'
                placeholder='search sneakers'
                onChange={updateFilters}
+               value={search}
             />
          </Form>
       </div>
