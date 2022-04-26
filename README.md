@@ -1,76 +1,54 @@
-# Getting Started with Create React App
+# Sneakerverse Ecommerce Website
+
+Live Link [Sneakerverse](https://sneakerverse.netlify.app/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Design Inspiration
 
-In the project directory, you can run:
+I built this app based on design inspiration with some variations
 
-### `yarn start`
+![Design Inspiration](./src/design/Ecommerce-Desktop.jpeg)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[All design inspiration images](https://github.com/ubong-s/sneakerverse-react/tree/main/design)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## About this project
 
-### `yarn test`
+-  The challenge is to build out a functioning ecommere website.
+-  `useContext and `useReducer` hooks are used for state management.
+-  Stripe is integrated
+-  DatoCMS is used for content management
+-  Auth for user management
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## The challenge
 
-### `yarn build`
+Users should be able to:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-  View the optimal layout for the app depending on their device's screen size
+-  See hover states for all interactive elements on the page
+-  View Products
+-  Filter all products by name search, brands, category, size or price
+-  View each product page
+-  Add product to cart
+-  Remove product from cart
+-  Increase product quantity in product page without exceeding the available stock
+-  Increase product quantity in cart page without exceeding the available stock
+-  Login and Logout
+-  Cannot checkout unless logged in
+-  Proccess payment using checkout (Test Checkout)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## How to navigate this project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-  State management using `useContext`[Code](https://github.com/ubong-s/sneakerverse-react/tree/main/src/context) and `useReducer`[Code](https://github.com/ubong-s/sneakerverse-react/tree/main/src/reducers) hooks.
+-  Responsive CSS using styled-components [Code](https://github.com/ubong-s/sneakerverse-react/blob/main/src/styles/globalStyle.js)
+-  This application fetches products data from the [DatoCMS](https://www.datocms.com/) using graphql
+-  Stripe is integrated [Code](https://github.com/ubong-s/sneakerverse-react/blob/main/src/components/StripeCheckout.js)
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Improvements that can be made
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-  Use a project management too to manage processes
+-  Incorporate a testing library
+-  Add filter ny color
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-### Lessons Learnt
-
-react router dom v6 routing
-polished usage of context
-polished usage of reducers
