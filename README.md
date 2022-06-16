@@ -9,7 +9,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 I built this app based on design inspiration with some variations
 
 ![Screenshot](./design/final/sneakerverse-desktop.png)
-![Design Inspiration](./design/inspiration/Ecommerce-Desktop.jpeg)
 
 [All design inspiration images](https://github.com/ubong-s/sneakerverse-react/tree/main/design)
 
