@@ -8,7 +8,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 I built this app based on design inspiration with some variations
 
-![Design Inspiration](./design/Ecommerce-Desktop.jpeg)
+![Screenshot](./design/final/sneakerverse-desktop.png)
+![Design Inspiration](./design/inspiration/Ecommerce-Desktop.jpeg)
 
 [All design inspiration images](https://github.com/ubong-s/sneakerverse-react/tree/main/design)
 
@@ -44,11 +45,8 @@ Users should be able to:
 -  This application fetches products data from the [DatoCMS](https://www.datocms.com/) using graphql
 -  Stripe is integrated [Code](https://github.com/ubong-s/sneakerverse-react/blob/main/src/components/StripeCheckout.js)
 
-
 ## Improvements that can be made
 
 -  Use a project management too to manage processes
 -  Incorporate a testing library
--  Add filter ny color
-
-
+-  Add filter by colors

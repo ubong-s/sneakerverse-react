@@ -201,7 +201,7 @@ const Form = styled.form`
       height: 100%;
    }
 
-   @media screen and (min-width: 1024px) {
+   @media screen and (min-width: 768px) {
       opacity: unset;
       height: unset;
    }
@@ -274,7 +274,7 @@ const FilterToggle = styled.div`
    margin-bottom: 1.25rem;
    border-bottom: 2px solid ${(props) => props.theme.neutralLight};
 
-   @media screen and (min-width: 1024px) {
+   @media screen and (min-width: 768px) {
       display: none;
    }
 
